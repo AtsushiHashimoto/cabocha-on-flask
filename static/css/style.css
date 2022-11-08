@@ -1,0 +1,36 @@
+
+.width100{
+  width: 100%; /* extend the width of the grid item */
+  box-sizing: border-box; /* including padding / border in width */
+}
+
+.height80{
+  height: 80vh;    
+}
+
+.height70{
+  height: 70vh;    
+}
+
+.font50pt{
+   font-size: 50pt;   
+}
+.row{
+    display: table;
+}
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12{
+    display: table-cell;
+}  
+.vh-center{
+    vertical-align: middle;   
+    text-align: center;
+}
+
+.margin0{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+textarea {
+  resize: both;
+}
