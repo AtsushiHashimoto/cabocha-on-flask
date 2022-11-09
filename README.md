@@ -1,12 +1,13 @@
-# recipe_rewrite_management
+# CaboCha on Flask
 
-A flask+sqlite3 application to rewrite recipe and parse it with [cabocha](https://taku910.github.io/cabocha/).
+A CaboCha processor through Web GUI.
 
-Input: recipe_id, Original Recipe, Modified Recipe
-Output: {recipe_id}_recipe_original.txt, {recipe_id}_recipe_modified.txt, {recipe_id}_parsed_modified.txt
-
-# pass
-
-/login
-
-/ or /index.html
+# How to Install
+````
+ % docker --name cabocha_on_flask build .
+````
+# How to Run
+````
+ % docker run --name cof --net=host -v $(pwd):/root/workspace -it cabocha_on_flask "python /root/workspace/app.py"
+````
+Then, access to `http://localhost:5000`
