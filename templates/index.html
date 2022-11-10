@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-6">
                         <h4>パース結果</h4>
-                        <textarea id="output_text" class="width100 height70"></textarea>
+                        <textarea disabled id="output_text" class="width100 height70"></textarea>
                         <label>ダウンロード時のファイル名を指定</label><input id="basename" type="text" placeholder="cabocha-ed_text" />_cabocha-ed.txt
                         <button type="button" disabled id="download" class="btn btn-primary">
                             <i class="bi bi-download"></i> パース結果をファイルとして保存
@@ -46,6 +46,7 @@
                             $('#output_text').val(data)
                         }
                 );
+                $('#output_text').prop("disabled", false);
                 parsed = true
                 if ( basename.length > 0 ) {
                     $('#download').prop("disabled", false);
