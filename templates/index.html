@@ -16,13 +16,18 @@
                         <textarea id="input_text" class="width100 height70"></textarea>
                     </div>
                     <div class="col-1 vh-center margin0">
-                        <span id="parse" class="btn btn-primary">
-                        <i class="bi bi-play-fill font50pt"></i><br/>
-                            パースする</span>
+                        <button type='button' id="parse" class="btn btn-primary">
+                            <i class="bi bi-play-fill font50pt"></i><br/>
+                            パースする
+                        </button>
                     </div>
                     <div class="col-6">
                         <h4>パース結果</h4>
                         <textarea id="output_text" class="width100 height70"></textarea>
+                        <label>ダウンロード時のファイル名を指定</label><input id="basename" type="text" placeholder="cabocha-ed_text" />_cabocha-ed.txt
+                        <button type="button" disabled id="download" class="btn btn-primary">
+                            <i class="bi bi-download"></i> パース結果をファイルとして保存
+                        </button>
                     </div>
                 </div>
             </div>            
@@ -30,6 +35,8 @@
     </body>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
+        var parsed = false
+        var basename = ""
         $(document).ready(function(){
             $('#parse').click(function(){
                 var input_text=$('#input_text').val()
@@ -39,6 +46,38 @@
                             $('#output_text').val(data)
                         }
                 );
+                parsed = true
+                if ( basename.length > 0 ) {
+                    $('#download').prop("disabled", false);
+                }
+            });
+            $('#basename').keypress(function(){
+                basename = $(this).val()
+                if ( basename.length == 0 ){
+                    return
+                }
+                if ( parsed ){
+                    $('#download').prop("disabled", false);
+                }
+            });
+            $('#download').click(function(){
+                var blobed_text = new Blob([$('#output_text').val()], {type: 'text/plain'});
+                let url = URL.createObjectURL(blobed_text);
+                
+                var input_text=$('#output_text').val()
+                $.post("parse",
+                       { input: input_text},
+                       function(data){
+                            $('#output_text').val(data)
+                        }
+                );
+                let link = document.createElement('a');
+                link.href = url;
+                link.download = $('#basename').val() + '_cabocha-ed.txt';
+                // 要素の追加
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode.removeChild(link);
             });
         });
     </script>    
