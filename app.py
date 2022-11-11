@@ -11,8 +11,9 @@ def index():
 @app.route("/parse", methods=["POST"])
 def parse():
     str_input = request.form.get('input')
-    tree = c.parse(str_input)
-    return tree.toString(CaboCha.FORMAT_LATTICE)
+    return [c.parse(s).toString(CaboCha.FORMAT_LATTICE) for s in str_input.split('\n') if len(s)>0].join('\n')
+    #tree = c.parse(str_input)
+    #return tree.toString(CaboCha.FORMAT_LATTICE)
 
 import argparse
 parser = argparse.ArgumentParser(description='bottle server to collect streamed images')
