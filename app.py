@@ -11,7 +11,7 @@ def index():
 @app.route("/parse", methods=["POST"])
 def parse():
     str_input = request.form.get('input')
-    return "\n".join([c.parse(s).toString(CaboCha.FORMAT_LATTICE) for s in str_input.split('\n') if len(s)>0])
+    return "".join([c.parse(s).toString(CaboCha.FORMAT_LATTICE) for s in str_input.split('\n') if len(s)>0])
     #tree = c.parse(str_input)
     #return tree.toString(CaboCha.FORMAT_LATTICE)
 
