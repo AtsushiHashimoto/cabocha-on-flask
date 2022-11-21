@@ -65,13 +65,6 @@
                 var blobed_text = new Blob([$('#output_text').val()], {type: 'text/plain'});
                 let url = URL.createObjectURL(blobed_text);
                 
-                var input_text=$('#output_text').val()
-                $.post("parse",
-                       { input: input_text},
-                       function(data){
-                            $('#output_text').val(data)
-                        }
-                );
                 let link = document.createElement('a');
                 link.href = url;
                 link.download = $('#basename').val() + '_cabocha-ed.txt';
